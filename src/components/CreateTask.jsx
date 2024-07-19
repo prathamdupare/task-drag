@@ -58,7 +58,7 @@ const CreateTask = ({
             setIsDialogOpen(true);
           }}
         >
-          Add Task
+          Add New Task
         </Button>
         <DialogContent>
           <Label>Task Title</Label>
