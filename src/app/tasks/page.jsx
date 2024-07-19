@@ -86,6 +86,7 @@ const initialTasks = [
 
 const Page = () => {
   const [tasks, setTasks] = useState(initialTasks);
+
   const [title, setTitle] = useState("");
   const [status, setStatus] = useState("");
   const [cost, setCost] = useState(null);
@@ -100,10 +101,6 @@ const Page = () => {
   }, [tasks]);
 
   const [activeCard, setActiveCard] = useState(null);
-
-  const [currentDay, setCurrentDay] = useState(1); // Manage current day with state
-
-  const maxDays = 5;
 
   const onDrop = (status, position) => {
     console.log(
