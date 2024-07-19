@@ -4,7 +4,7 @@ import DropArea from "./DropArea";
 
 const TaskColumn = ({ setActiveCard, onDrop, status, tasks, cardClick }) => {
   return (
-    <div className="flex flex-col w-[300px]  h-full gap-2 mx-5 ">
+    <div className="flex flex-col  md:w-[200px]  h-full gap-2 mx-5 ">
       {tasks.map(
         (task, index) =>
           task.status === status && (
