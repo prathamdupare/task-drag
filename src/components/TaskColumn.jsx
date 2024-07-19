@@ -4,12 +4,12 @@ import DropArea from "./DropArea";
 
 const TaskColumn = ({ setActiveCard, onDrop, status, tasks, cardClick }) => {
   return (
-    <div className="flex flex-col  md:w-[200px]  h-full gap-2 mx-5 ">
+    <div className="flex flex-col w-full h-full md:w-[200px]  gap-2 mx-5">
+      <DropArea extra="h-[100px]" onDrop={() => onDrop(status, 0)} />
       {tasks.map(
         (task, index) =>
           task.status === status && (
             <div key={index} className="">
-              <DropArea extra="h-[50px]" onDrop={() => onDrop(status, 0)} />
               <TaskCard
                 title={task.title}
                 cost={task.cost}
@@ -21,15 +21,14 @@ const TaskColumn = ({ setActiveCard, onDrop, status, tasks, cardClick }) => {
                 setActiveCard={setActiveCard}
                 cardClick={cardClick}
               />
+
               <DropArea
-                extra="h-[50px]"
+                extra="h-[50px] "
                 onDrop={() => onDrop(status, index + 1)}
               />
             </div>
           ),
       )}
-
-      <DropArea extra="h-full" onDrop={() => onDrop(status, 0)} />
     </div>
   );
 };

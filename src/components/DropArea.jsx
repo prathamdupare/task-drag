@@ -8,7 +8,7 @@ const DropArea = ({ onDrop, status, index, extra }) => {
       onDragEnter={() => setShowDrop(true)}
       onDragLeave={() => setShowDrop(false)}
       onDrop={() => {
-        onDrop(status, index);
+        onDrop();
         setShowDrop(false);
       }}
       onDragOver={(e) => e.preventDefault()}

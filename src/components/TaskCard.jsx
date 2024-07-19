@@ -23,7 +23,7 @@ const TaskCard = ({
 }) => {
   return (
     <Card
-      className="cursor-grab h-[300px]"
+      className="cursor-grab h-[250px]"
       draggable
       onDragStart={() => {
         setActiveCard(index);
