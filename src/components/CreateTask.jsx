@@ -6,6 +6,14 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { Label } from "@/components/ui/label";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { Input } from "@/components/ui/input";
 const CreateTask = ({
   addTask,
@@ -74,14 +82,19 @@ const CreateTask = ({
             value={cost}
             onChange={(e) => setCost(e.target.value)}
           />
-          <br />
-          <Label>Day</Label>
-          <Input
-            type="number"
-            status={status}
-            onChange={(e) => setStatus(e.target.value)}
-          />
-          <br />
+
+          <Select onValueChange={(value) => setStatus(value)}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Select Day" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="1">Day 1</SelectItem>
+              <SelectItem value="2">Day 2</SelectItem>
+              <SelectItem value="3">Day 3</SelectItem>
+              <SelectItem value="4">Unassigned</SelectItem>
+            </SelectContent>
+          </Select>
+
           <Label>Notes</Label>
           <Input
             type="text"

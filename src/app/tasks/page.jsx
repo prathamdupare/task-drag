@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 import CreateTask from "@/components/CreateTask";
+import Link from "next/link";
 
 const initialTasks = [
   { title: "Task 1: Setup Project", status: "1" },
@@ -157,11 +158,13 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-row m-5">
+    <div className="flex flex-col m-5">
+      <Link href="/" className="flex gap-2" prefetch={false}>
+        <span className="font-bold">Task Planner</span>
+      </Link>
       <Tabs defaultValue="overview" className="w-full">
         <TabsList>
           <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="day">Day</TabsTrigger>
         </TabsList>
         <TabsContent value="overview">
           <ScrollArea className="h-[85vh] w-full rounded-md border p-4">
@@ -205,12 +208,12 @@ const Page = () => {
               </div>
 
               <div className="mx-5 border  flex ">
-                <div className="flex  flex-col items-center">
-                  <p className="p-2 font-bold">Day 4</p>
+                <div className="flex  flex-col items-center border-2 border-red-100">
+                  <p className="p-2 font-bold">Unassigned</p>
                   <TaskColumn
                     setActiveCard={setActiveCard}
                     onDrop={onDrop}
-                    status="4"
+                    status="Unassigned"
                     tasks={tasks}
                     cardClick={cardClick}
                   />
