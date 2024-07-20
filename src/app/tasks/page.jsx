@@ -19,6 +19,7 @@ import {
   tasksAtom,
   titleAtom,
 } from "../recoilContextProvider";
+import { Scrollbar } from "@radix-ui/react-scroll-area";
 
 const Page = () => {
   const [tasks, setTasks] = useRecoilState(tasksAtom);
@@ -96,12 +97,16 @@ const Page = () => {
         <span className="font-bold">Task Planner</span>
       </Link>
       <Tabs defaultValue="overview" className="w-full">
-        <TabsList>
+        <TabsList className="flex w-[230px] gap-2 ">
           <TabsTrigger value="overview">Overview</TabsTrigger>
+
+          <div>
+            <CreateTask cardClick={cardClick} addTask={addTask} />
+          </div>
         </TabsList>
         <TabsContent value="overview">
-          <ScrollArea className="h-[85vh] w-full rounded-md border p-4">
-            <div className="rounded-md mt-10 h-full flex flex-col md:flex-row">
+          <ScrollArea className="h-[85vh]  rounded-md border p-4">
+            <div className="rounded-md overflow-hidden mt-10 h-full flex flex-row md:flex-row">
               <div className="mx-5 border min-h-full flex">
                 <div className="flex flex-col items-center ">
                   <p className="p-2 font-bold">Day 1</p>
@@ -148,8 +153,8 @@ const Page = () => {
                   />
                 </div>
               </div>
-              <CreateTask cardClick={cardClick} addTask={addTask} />
             </div>
+            <Scrollbar orientation="horizontal" />
           </ScrollArea>
         </TabsContent>
       </Tabs>

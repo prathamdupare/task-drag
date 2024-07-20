@@ -9,9 +9,9 @@ const TaskColumn = ({ onDrop, status, cardClick }) => {
   const filteredTasks = tasks.filter((task) => task.status === status);
 
   return (
-    <div className="flex flex-col w-full h-full md:w-[200px]  gap-2 mx-5">
+    <div className="flex flex-col w-full h-full w-[250px]  max-w-[300px] gap-2 mx-5">
       <DropArea
-        extra={filteredTasks.length === 0 ? "flex-grow h-full" : "h-[100px]"}
+        extra={filteredTasks.length === 0 ? "flex-grow h-full" : "h-[50px]"}
         onDrop={() => onDrop(status, 0)}
       />
       {tasks.map(
