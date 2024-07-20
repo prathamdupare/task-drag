@@ -14,7 +14,7 @@ const DropArea = ({ onDrop, extra }) => {
       onDragOver={(e) => e.preventDefault()}
       className={`transition-all ${extra} duration-300 ${
         showDrop
-          ? "h-[300px] border-dotted my-5 border-0 rounded-md bg-secondary"
+          ? "h-[200px] border-dotted my-5 border-0 rounded-md bg-secondary"
           : "position-absolute"
       }`}
     ></div>
