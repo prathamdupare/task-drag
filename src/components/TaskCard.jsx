@@ -33,7 +33,6 @@ const TaskCard = ({
         <CardDescription>Note - {note}</CardDescription>
         <CardDescription>Duration - {duration} hr(s)</CardDescription>
         <CardDescription>Start Time - {startTime}</CardDescription>
-        <CardDescription>End Time - {endTime}</CardDescription>
       </CardHeader>
     </Card>
   );

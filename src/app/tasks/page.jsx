@@ -20,6 +20,7 @@ import {
   titleAtom,
 } from "../recoilContextProvider";
 import { Scrollbar } from "@radix-ui/react-scroll-area";
+import { ModeToggle } from "@/components/mode-toggle";
 
 const Page = () => {
   const [tasks, setTasks] = useRecoilState(tasksAtom);
@@ -69,6 +70,7 @@ const Page = () => {
       endTime: endTime,
     };
     setTasks([...tasks, newTask]);
+    setIsDialogOpen(false);
     console.log(newTask);
   };
 
@@ -93,14 +95,17 @@ const Page = () => {
 
   return (
     <div className="flex flex-col m-5">
-      <Link href="/" className="flex gap-2" prefetch={false}>
-        <span className="font-bold">Task Planner</span>
-      </Link>
+      <div className="flex gap-3 m-3">
+        <Link href="/" className="flex gap-2" prefetch={false}>
+          <span className="font-bold">Task Planner</span>
+        </Link>
+      </div>
       <Tabs defaultValue="overview" className="w-full">
-        <TabsList className="flex w-[230px] gap-2 ">
+        <TabsList className="flex w-[300px] gap-2 ">
           <TabsTrigger value="overview">Overview</TabsTrigger>
 
-          <div>
+          <div className="flex gap-2">
+            <ModeToggle />
             <CreateTask cardClick={cardClick} addTask={addTask} />
           </div>
         </TabsList>
@@ -143,12 +148,12 @@ const Page = () => {
               </div>
 
               <div className="mx-5 border flex">
-                <div className="flex flex-col items-center border-2 border-red-100">
+                <div className="flex flex-col items-center border-2 rounded-md border-red-200">
                   <p className="p-2 font-bold">Unassigned</p>
                   <TaskColumn
                     setActiveCard={setActiveCard}
                     onDrop={onDrop}
-                    status="Unassigned"
+                    status="4"
                     cardClick={cardClick}
                   />
                 </div>

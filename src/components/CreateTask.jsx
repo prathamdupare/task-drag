@@ -119,9 +119,6 @@ const CreateTask = ({ cardClick, addTask }) => {
               +
             </Button>
           </div>
-          <br />
-          <Label>End Time:</Label>
-          <Input type="time" value={endTime} readOnly />
           <Button onClick={(e) => addTask(e)}>Add Task</Button>
         </DialogContent>
       </Dialog>
