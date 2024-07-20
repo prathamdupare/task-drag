@@ -21,11 +21,13 @@ import {
   isDialogOpenAtom,
   noteAtom,
   startTimeAtom,
+  statusAtom,
   titleAtom,
 } from "@/app/recoilContextProvider";
-const CreateTask = ({}) => {
+const CreateTask = ({ cardClick, addTask }) => {
   const [title, setTitle] = useRecoilState(titleAtom);
   const [cost, setCost] = useRecoilState(costAtom);
+  const [status, setStatus] = useRecoilState(statusAtom);
   const [note, setNote] = useRecoilState(noteAtom);
   const [startTime, setStartTime] = useRecoilState(startTimeAtom);
   const [duration, setDuration] = useRecoilState(durationAtom);

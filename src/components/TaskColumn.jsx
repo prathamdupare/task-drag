@@ -6,10 +6,14 @@ import { tasksAtom } from "@/app/recoilContextProvider";
 
 const TaskColumn = ({ onDrop, status, cardClick }) => {
   const [tasks, setTasks] = useRecoilState(tasksAtom);
+  const filteredTasks = tasks.filter((task) => task.status === status);
 
   return (
     <div className="flex flex-col w-full h-full md:w-[200px]  gap-2 mx-5">
-      <DropArea extra="h-[100px]" onDrop={() => onDrop(status, 0)} />
+      <DropArea
+        extra={filteredTasks.length === 0 ? "flex-grow h-full" : "h-[100px]"}
+        onDrop={() => onDrop(status, 0)}
+      />
       {tasks.map(
         (task, index) =>
           task.status === status && (
@@ -26,7 +30,7 @@ const TaskColumn = ({ onDrop, status, cardClick }) => {
               />
 
               <DropArea
-                extra="h-[50px] "
+                extra="h-[50px]"
                 onDrop={() => onDrop(status, index + 1)}
               />
             </div>

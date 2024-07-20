@@ -108,7 +108,7 @@ const Page = () => {
                   <TaskColumn
                     setActiveCard={setActiveCard}
                     onDrop={onDrop}
-                    status="0"
+                    status="1"
                     cardClick={cardClick}
                   />
                 </div>
@@ -119,7 +119,7 @@ const Page = () => {
                   <TaskColumn
                     setActiveCard={setActiveCard}
                     onDrop={onDrop}
-                    status="1"
+                    status="2"
                     cardClick={cardClick}
                   />
                 </div>
@@ -131,7 +131,7 @@ const Page = () => {
                   <TaskColumn
                     setActiveCard={setActiveCard}
                     onDrop={onDrop}
-                    status="2"
+                    status="3"
                     cardClick={cardClick}
                   />
                 </div>
@@ -148,7 +148,7 @@ const Page = () => {
                   />
                 </div>
               </div>
-              <CreateTask />
+              <CreateTask cardClick={cardClick} addTask={addTask} />
             </div>
           </ScrollArea>
         </TabsContent>
