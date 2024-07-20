@@ -1,7 +1,5 @@
 "use client";
 
-import React, { useState } from "react";
-
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { Label } from "@/components/ui/label";
@@ -15,26 +13,25 @@ import {
 } from "@/components/ui/select";
 
 import { Input } from "@/components/ui/input";
-const CreateTask = ({
-  addTask,
-  title,
-  setTitle,
-  status,
-  setStatus,
-  cost,
-  cardClick,
-  setCost,
-  note,
-  setNote,
-  setDuration,
-  duration,
-  endTime,
-  setEndTime,
-  isDialogOpen,
-  setIsDialogOpen,
-  startTime,
-  setStartTime,
-}) => {
+import { useRecoilState } from "recoil";
+import {
+  costAtom,
+  durationAtom,
+  endTimeAtom,
+  isDialogOpenAtom,
+  noteAtom,
+  startTimeAtom,
+  titleAtom,
+} from "@/app/recoilContextProvider";
+const CreateTask = ({}) => {
+  const [title, setTitle] = useRecoilState(titleAtom);
+  const [cost, setCost] = useRecoilState(costAtom);
+  const [note, setNote] = useRecoilState(noteAtom);
+  const [startTime, setStartTime] = useRecoilState(startTimeAtom);
+  const [duration, setDuration] = useRecoilState(durationAtom);
+  const [endTime, setEndTime] = useRecoilState(endTimeAtom);
+  const [isDialogOpen, setIsDialogOpen] = useRecoilState(isDialogOpenAtom);
+
   const calculateEndTime = () => {
     if (!startTime) return "";
     const [hours, minutes] = startTime.split(":");
@@ -99,6 +96,7 @@ const CreateTask = ({
           <Input
             type="text"
             note={note}
+            value={note}
             placeholder="Notes.."
             onChange={(e) => setNote(e.target.value)}
           />

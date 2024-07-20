@@ -1,8 +1,12 @@
 import React from "react";
 import TaskCard from "./TaskCard";
 import DropArea from "./DropArea";
+import { useRecoilState } from "recoil";
+import { tasksAtom } from "@/app/recoilContextProvider";
 
-const TaskColumn = ({ setActiveCard, onDrop, status, tasks, cardClick }) => {
+const TaskColumn = ({ onDrop, status, cardClick }) => {
+  const [tasks, setTasks] = useRecoilState(tasksAtom);
+
   return (
     <div className="flex flex-col w-full h-full md:w-[200px]  gap-2 mx-5">
       <DropArea extra="h-[100px]" onDrop={() => onDrop(status, 0)} />
@@ -18,7 +22,6 @@ const TaskColumn = ({ setActiveCard, onDrop, status, tasks, cardClick }) => {
                 startTime={task.startTime}
                 endTime={task.endTime}
                 index={index}
-                setActiveCard={setActiveCard}
                 cardClick={cardClick}
               />
 

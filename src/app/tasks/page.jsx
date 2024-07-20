@@ -6,90 +6,36 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import CreateTask from "@/components/CreateTask";
 import Link from "next/link";
-
-const initialTasks = [
-  { title: "Task 1: Setup Project", status: "1" },
-  {
-    title: "Dehradun Palace Sauna",
-    status: "2",
-    cost: 4000,
-    duration: 2,
-    note: "Purchase towels",
-    startTime: "23:03",
-    endTime: "23:03",
-  },
-  {
-    title: "Task 2: Create Components",
-    status: "1",
-    cost: 4000,
-    duration: 2,
-    endTime: "23:03",
-    note: "Hello",
-    startTime: "23:03",
-  },
-  {
-    title: "Book Flights to Iceland",
-    status: "0",
-    cost: 1200,
-    duration: 0.5,
-    note: "Check for best prices on flights",
-    startTime: "09:00",
-    endTime: "09:30",
-  },
-  {
-    title: "Reserve Hotels in Reykjavik",
-    status: "2",
-    cost: 2000,
-    duration: 1,
-    note: "Prefer central locations for better access",
-    startTime: "10:00",
-    endTime: "11:00",
-  },
-  {
-    title: "Organize Day Tours in Iceland",
-    status: "3",
-    cost: 1500,
-    duration: 2,
-    note: "Include glacier and volcano tours",
-    startTime: "12:00",
-    endTime: "14:00",
-  },
-  {
-    title: "Prepare Travel Itinerary for Norway",
-    status: "1",
-    cost: 800,
-    duration: 1.5,
-    note: "Include museums and fjord sightseeing",
-    startTime: "15:00",
-    endTime: "16:30",
-  },
-  {
-    title: "Confirm Transportation in Oslo",
-    status: "2",
-    cost: 300,
-    duration: 1,
-    note: "Check options for rental cars and public transport",
-    startTime: "17:00",
-    endTime: "18:00",
-  },
-];
+import { useRecoilState } from "recoil";
+import {
+  activeCardAtom,
+  costAtom,
+  durationAtom,
+  endTimeAtom,
+  isDialogOpenAtom,
+  noteAtom,
+  startTimeAtom,
+  statusAtom,
+  tasksAtom,
+  titleAtom,
+} from "../recoilContextProvider";
 
 const Page = () => {
-  const [tasks, setTasks] = useState(initialTasks);
-  const [title, setTitle] = useState("");
-  const [status, setStatus] = useState("");
-  const [cost, setCost] = useState(null);
-  const [note, setNote] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [duration, setDuration] = useState(1); // in hours
-  const [endTime, setEndTime] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [tasks, setTasks] = useRecoilState(tasksAtom);
+
+  const [title, setTitle] = useRecoilState(titleAtom);
+  const [status, setStatus] = useRecoilState(statusAtom);
+  const [cost, setCost] = useRecoilState(costAtom);
+  const [note, setNote] = useRecoilState(noteAtom);
+  const [startTime, setStartTime] = useRecoilState(startTimeAtom);
+  const [duration, setDuration] = useRecoilState(durationAtom);
+  const [endTime, setEndTime] = useRecoilState(endTimeAtom);
+  const [isDialogOpen, setIsDialogOpen] = useRecoilState(isDialogOpenAtom);
+  const [activeCard, setActiveCard] = useRecoilState(activeCardAtom);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
-
-  const [activeCard, setActiveCard] = useState(null);
 
   const onDrop = (status, position) => {
     console.log(
@@ -163,7 +109,6 @@ const Page = () => {
                     setActiveCard={setActiveCard}
                     onDrop={onDrop}
                     status="0"
-                    tasks={tasks}
                     cardClick={cardClick}
                   />
                 </div>
@@ -175,7 +120,6 @@ const Page = () => {
                     setActiveCard={setActiveCard}
                     onDrop={onDrop}
                     status="1"
-                    tasks={tasks}
                     cardClick={cardClick}
                   />
                 </div>
@@ -187,7 +131,6 @@ const Page = () => {
                   <TaskColumn
                     setActiveCard={setActiveCard}
                     onDrop={onDrop}
-                    tasks={tasks}
                     status="2"
                     cardClick={cardClick}
                   />
@@ -201,30 +144,11 @@ const Page = () => {
                     setActiveCard={setActiveCard}
                     onDrop={onDrop}
                     status="Unassigned"
-                    tasks={tasks}
                     cardClick={cardClick}
                   />
                 </div>
               </div>
-              <CreateTask
-                addTask={addTask}
-                setTitle={setTitle}
-                setStatus={setStatus}
-                title={title}
-                status={status}
-                cost={cost}
-                setCost={setCost}
-                note={note}
-                setNote={setNote}
-                startTime={startTime}
-                setStartTime={setStartTime}
-                duration={duration}
-                setDuration={setDuration}
-                endTime={endTime}
-                isDialogOpen={isDialogOpen}
-                setIsDialogOpen={setIsDialogOpen}
-                setEndTime={setEndTime}
-              />
+              <CreateTask />
             </div>
           </ScrollArea>
         </TabsContent>

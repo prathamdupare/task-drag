@@ -1,26 +1,20 @@
 import React from "react";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardDescription, CardHeader } from "@/components/ui/card";
+import { useRecoilState } from "recoil";
+import { activeCardAtom } from "@/app/recoilContextProvider";
 
 const TaskCard = ({
   index,
-  task,
   cost,
   title,
-  setActiveCard,
   note,
   duration,
   startTime,
   endTime,
   cardClick,
 }) => {
+  const [activeCard, setActiveCard] = useRecoilState(activeCardAtom);
   return (
     <Card
       className="cursor-grab h-[250px]"
